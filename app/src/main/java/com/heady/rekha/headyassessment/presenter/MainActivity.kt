@@ -26,10 +26,11 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View{
         setSupportActionBar(toolbar)
 
         presenter = MainActivityPresenter(this)
-        presenter.getCategories()// todo in progress
+//        presenter.getCategories()// todo in progress
 
         fab.setOnClickListener { view ->
             //todo
+            presenter.getCategories()
         }
 
         val toggle = ActionBarDrawerToggle(

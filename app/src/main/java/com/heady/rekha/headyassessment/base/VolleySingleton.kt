@@ -1,9 +1,11 @@
 package com.heady.rekha.headyassessment
 
 import android.content.Context
-import com.android.volley.Request
-import com.android.volley.toolbox.Volley
 import com.android.volley.RequestQueue
+import com.android.volley.toolbox.Volley
+import me.dlkanth.stethovolley.StethoVolleyStack
+
+
 
 /**
  * Created by rekha on 30/11/17.
@@ -33,7 +35,12 @@ class VolleySingleton {
         return mRequestQueue!!
     }
 
-    fun <T> addToRequestQueue(context: Context, request: Request<T>) {
-        getRequestQueue(context).add(request)
+    fun <T> addToRequestQueue(context: Context, request: com.android.volley.Request<T>) {
+        getRequestVolleyQueue(context).add(request)
     }
+
+    fun getRequestVolleyQueue(context: Context): RequestQueue {
+        return Volley.newRequestQueue(context, StethoVolleyStack())
+    }
+
 }

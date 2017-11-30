@@ -43,4 +43,5 @@ ext {
     moshiVersion = '1.5.0'
     ankoVersion = '0.10.1'
     constraintlayout = '1.0.2'
+    stethoVersion = '1.4.1'
 }

@@ -15,6 +15,15 @@ android {
         resValue("string", "app_name", "Heady E-Commerce")
         buildConfigField("String", "APP_MODULE_PACKAGE_NAME", '"' + rootProject.ext.AppModuleName + '"')
         manifestPlaceholders = [appName: rootProject.ext.AppModuleName]
+
+    }
+    buildTypes {
+        debug{
+            buildConfigField("boolean", "stethoIsEnabled", "true")
+        }
+        release {
+            buildConfigField("boolean", "stethoIsEnabled", "false")
+        }
     }
     buildTypes {
         release {
@@ -38,7 +47,7 @@ dependencies {
     compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintlayout"
 
     compile "com.squareup.moshi:moshi:$rootProject.ext.moshiVersion"
-    compile "com.android.volley:volley:$rootProject.ext.volleyVersion"
+//    compile "com.android.volley:volley:$rootProject.ext.volleyVersion"
 
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
@@ -46,5 +55,11 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 //    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     kapt "com.android.databinding:compiler:$rootProject.ext.kaptVersion"
+
+    debugCompile "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
+    debugCompile "com.facebook.stetho:stetho-urlconnection:$rootProject.ext.stethoVersion"
+    debugCompile "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stethoVersion"
+
+    compile 'me.dlkanth:stetho-volley:1.0'
 
 }
