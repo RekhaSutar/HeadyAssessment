@@ -1,4 +1,4 @@
-package com.heady.rekha.headyassessment.presenter
+package com.heady.rekha.headyassessment.presenter.category
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.row_category.view.*
 /**
  * Created by rekha on 1/12/17.
  */
-class CategoryAdapter(private val categories: List<CategoryEntity>, listener: View.OnClickListener) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(private val categories: List<CategoryEntity>,
+                      private val listener: View.OnClickListener) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return categories.size
@@ -23,12 +24,14 @@ class CategoryAdapter(private val categories: List<CategoryEntity>, listener: Vi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       holder.bindItems(categories[position])
+        holder.bindItems(categories[position], listener)
     }
 
     open class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        open fun bindItems(categoryEntity: CategoryEntity)  = with(itemView){
+        open fun bindItems(categoryEntity: CategoryEntity, listener: View.OnClickListener) = with(itemView) {
             txtCategoryName.text = categoryEntity.name
+            txtCategoryName.tag = categoryEntity
+            txtCategoryName.setOnClickListener(listener)
         }
     }
 

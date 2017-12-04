@@ -39,7 +39,7 @@ class VolleySingleton {
         getRequestVolleyQueue(context).add(request)
     }
 
-    fun getRequestVolleyQueue(context: Context): RequestQueue {
+    private fun getRequestVolleyQueue(context: Context): RequestQueue {
         return Volley.newRequestQueue(context, StethoVolleyStack())
     }
 

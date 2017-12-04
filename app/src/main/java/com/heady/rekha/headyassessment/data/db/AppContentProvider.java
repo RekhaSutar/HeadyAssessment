@@ -93,6 +93,7 @@ public class AppContentProvider extends ContentProvider {
 
     @Override
     public int bulkInsert(Uri uri, ContentValues[] values) {
+        sqlDB = dbHelper.getWritableDatabase();
         int numOfRowsInserted = 0;
         sqlDB.beginTransaction();
         try {

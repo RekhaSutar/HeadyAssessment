@@ -41,13 +41,20 @@ public final class DatabaseContract {
 
         public static final String COLUMN_PRODUCTS_ID = "products_id";
         public static final String COLUMN_PRODUCTS_JSON = "products_json";
+        public static final String COLUMN_VIEW_COUNT = "view_count";
+        public static final String COLUMN_ORDER_COUNT = "order_count";
+        public static final String COLUMN_SHARES = "shares";
         //
         public static final String sql_createTable = "create table " + TABLE_NAME + " ( "
                 + _ID + " integer primary key autoincrement , "
-                + COLUMN_PRODUCTS_ID + " text UNIQUE, "
+                + COLUMN_PRODUCTS_ID + " integer UNIQUE, "
+                + COLUMN_VIEW_COUNT + " integer , "
+                + COLUMN_ORDER_COUNT + " integer , "
+                + COLUMN_SHARES + " integer , "
                 + COLUMN_PRODUCTS_JSON + " text )";
 
-        public static final String[] mProjection = {_ID, COLUMN_PRODUCTS_ID, COLUMN_PRODUCTS_JSON};
+        public static final String[] mProjection = {_ID, COLUMN_PRODUCTS_ID,
+                COLUMN_PRODUCTS_JSON , COLUMN_VIEW_COUNT, COLUMN_ORDER_COUNT, COLUMN_SHARES};
     }
 
 }

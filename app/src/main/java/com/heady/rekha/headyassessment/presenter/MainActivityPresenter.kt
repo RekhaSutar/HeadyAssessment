@@ -3,17 +3,26 @@ package com.heady.rekha.headyassessment.presenter
 import com.heady.rekha.headyassessment.base.MainApplication
 import com.heady.rekha.headyassessment.data.RepositoryImpl
 import com.heady.rekha.headyassessment.domain.Repository
+import com.heady.rekha.headyassessment.domain.entity.Product
 import javax.inject.Inject
 
 /**
  * Created by rekha on 30/11/17.
  */
-class MainActivityPresenter : MainActivityContract.Presenter {
+class MainActivityPresenter(private var view: MainActivityContract.View?) : MainActivityContract.Presenter {
+    override fun getSortedProducts(sortType: String) {
+        repository.getSortedProducts(sortType, object : Repository.DataCallBack{
+            override fun onSuccess(any: List<Any>?) {
+                view?.onProductsFetched(any as List<Product>)
+            }
+            override fun onError() {
+                view?.onError()
+            }
 
-    private var view: MainActivityContract.View?
+        })
+    }
 
-    constructor(view: MainActivityContract.View?) {
-        this.view = view
+    init {
         MainApplication.appComponent.inject(this)
     }
 
@@ -24,16 +33,16 @@ class MainActivityPresenter : MainActivityContract.Presenter {
         view = null
     }
 
-    override fun getCategories() {
-        repository.fetchData(object : Repository.DataFetchCallback {
-            override fun onSuccess() {
-
+    override fun getProducts(productIds: String) {
+        repository.getProducts(productIds, object : Repository.DataCallBack{
+            override fun onSuccess(any: List<Any>?) {
+                view?.onProductsFetched(any as List<Product>)
             }
-
             override fun onError() {
-
+                view?.onError()
             }
 
         })
     }
+
 }

@@ -9,4 +9,12 @@ interface Repository {
         fun onSuccess()
         fun onError()
     }
+
+    fun getCategories(dataCallBack: DataCallBack)
+    fun getProducts(productIds: String, dataCallBack: DataCallBack)
+    fun getSortedProducts(sortType: String, dataCallBack: DataCallBack)
+    interface DataCallBack{
+        fun onSuccess(any: List<Any>?)
+        fun onError()
+    }
 }

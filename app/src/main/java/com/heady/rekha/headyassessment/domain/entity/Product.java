@@ -1,10 +1,11 @@
 
 package com.heady.rekha.headyassessment.domain.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import com.squareup.moshi.Json;
 
-public class Product {
+public class Product implements Serializable{
 
     @Json(name = "id")
     public Integer id;
